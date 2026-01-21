@@ -8,7 +8,7 @@ const rootDoc = ROAR_DB_DOC === 'production' ? prodDoc : ['dev', 'rhythm-detecti
 /* eslint-disable import/prefer-default-export */
 export const roarConfig = {
   firebaseConfig: {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    apiKey: "j9yv1giYeFsMpbjj2G3p7jNHxIU",
     authDomain: 'gse-yeatmanlab.firebaseapp.com',
     projectId: 'gse-yeatmanlab',
     storageBucket: 'gse-yeatmanlab.appspot.com',

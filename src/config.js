@@ -112,9 +112,9 @@ export const initRoarJsPsych = (config) => {
       code.apply(fn, arguments);
     };
 
-  jsPsych.opts.on_finish = extend(jsPsych.opts.on_finish, () => {
-    config.firekit.finishRun();
-  });
+  // jsPsych.opts.on_finish = extend(jsPsych.opts.on_finish, () => {
+  //   config.firekit.finishRun();
+  // });
 
   const timingData = {
     start_time_utc0: config.startTime.toISOString(),
@@ -123,15 +123,15 @@ export const initRoarJsPsych = (config) => {
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   };
 
-  jsPsych.opts.on_data_update = extend(jsPsych.opts.on_data_update, (data) => {
-    if (data.save_trial) {
-      config.firekit?.writeTrial({
-        timingData,
-        userInfo: config.firekit?.userInfo,
-        ...data,
-      });
-    }
-  });
+  // jsPsych.opts.on_data_update = extend(jsPsych.opts.on_data_update, (data) => {
+  //   if (data.save_trial) {
+  //     config.firekit?.writeTrial({
+  //       timingData,
+  //       userInfo: config.firekit?.userInfo,
+  //       ...data,
+  //     });
+  //   }
+  // });
 
   // Add a special error handler that writes javascript errors to a special trial
   // type in the Firestore database
