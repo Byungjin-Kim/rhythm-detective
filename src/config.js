@@ -209,7 +209,7 @@ export const initRoarTimeline = (config) => {
         taskInfo,
       });
 
-      await config.firekit.startRun();
+      // await config.firekit.startRun();
     },
   };
 
