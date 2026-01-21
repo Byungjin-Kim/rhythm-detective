@@ -18,6 +18,12 @@ const notHotDogFiles = Array.from(Array(numFiles), (_, i) => i + 1).map(
   (idx) => `https://storage.googleapis.com/roar-hot-dog-images/nothotdog/${idx}.jpg`,
 );
 
+// Dog images (for Block 2) - Using cloud URLs instead of local files
+const dogFiles = Array.from(Array(numFiles), (_, i) => i + 1).map(
+  (idx) => `https://storage.googleapis.com/roar-hot-dog-images/dog/${idx}.jpg`,
+);
+
+// Block 1: Hot Dog vs. Not Hot Dog
 const allFiles = hotDogFiles.concat(notHotDogFiles);
 export const allTargets = allFiles.map((url) => ({
   target: `<img src="${url}" width=250 height=250>`,
@@ -28,6 +34,20 @@ export const allTargets = allFiles.map((url) => ({
 export const preloadImages = {
   type: jsPsychPreload,
   images: allFiles,
+};
+
+// Block 2: cat vs. dog
+
+const block2Files = catImages.concat(dogFiles);
+export const block2Targets = block2Files.map((url) => ({
+  target: `<img src="${url}" width=250 height=250>`,
+  isDog: url.includes('dog'),
+}));
+
+// Preload the cat/dog images
+export const preloadBlock2Images = {
+  type: jsPsychPreload,
+  images: block2Files,
 };
 
 export const preloadCatImages = {
