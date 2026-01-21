@@ -11,7 +11,7 @@ import './css/roar.css';
 // Local modules
 import { initConfig, initRoarJsPsych, initRoarTimeline } from './config';
 
-import { allTargets, preloadImages } from './loadAssets';
+import { allTargets, preloadImages, block2Targets, preloadBlock2Images } from './loadAssets';
 
 // ---------Initialize the jsPsych object and the timeline---------
 const config = await initConfig();
@@ -69,6 +69,82 @@ const hotDogTrials = {
 };
 
 timeline.push(hotDogTrials);
+
+const block2Instructions = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: `
+    <h3>Great job!</h3>
+    <p>
+      Now, press the right arrow key if the displayed image is of a dog.
+      Press the left arrow key if the displayed image is of a cat.
+    </p>
+    <p>Press any key to continue</p>
+  `,
+};
+
+timeline.push(preloadBlock2Images);
+timeline.push(block2Instructions);
+
+const catDogTrials = {
+  timeline: [
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: 'NO_KEYS',
+      trial_duration: 500,
+    },
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: block2Targets[0].target,
+      choices: ['ArrowLeft', 'ArrowRight'],
+      prompt: `
+        <p>Is this a dog?</p>
+        <p>If yes, press the right arrow key.</p>
+        <p>If no, press the left arrow key.</p>
+      `,
+      data: {
+        save_trial: true,
+        isDog: block2Targets[0].isDog,
+      },
+    },
+  ],
+};
+
+timeline.push(catDogTrials);
+
+const block2Trials = {
+  timeline: [
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: 'NO_KEYS',
+      trial_duration: 500,
+    },
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: jsPsych.timelineVariable('target'),
+      choices: ['ArrowLeft', 'ArrowRight'],
+      prompt: `
+        <p>Is this a dog?</p>
+        <p>If yes, press the right arrow key.</p>
+        <p>If no, press the left arrow key.</p>
+      `,
+      data: {
+        save_trial: true,
+        isDog: jsPsych.timelineVariable('isDog'),
+      },
+    },
+  ],
+  timeline_variables: block2Targets,
+  sample: {
+    type: 'without-replacement',
+    size: 10,
+  },
+};
+
+timeline.push(block2Instructions);
+timeline.push(preloadBlock2Images);
+timeline.push(block2Trials);
 
 const exit_fullscreen = {
   type: jsPsychFullScreen,
