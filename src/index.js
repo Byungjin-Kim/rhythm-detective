@@ -95,16 +95,15 @@ const catDogTrials = {
     },
     {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: block2Targets[0].target,
+      stimulus: jsPsych.timelineVariable('target'),
       choices: ['ArrowLeft', 'ArrowRight'],
       prompt: `
-        <p>Is this a dog?</p>
-        <p>If yes, press the right arrow key.</p>
-        <p>If no, press the left arrow key.</p>
+        <p>Is this a cat or a dog?</p>
+        <p>If cat, press the right arrow key.</p>
+        <p>If dog, press the left arrow key.</p>
       `,
       data: {
         save_trial: true,
-        isDog: block2Targets[0].isDog,
       },
     },
   ],
@@ -125,13 +124,12 @@ const block2Trials = {
       stimulus: jsPsych.timelineVariable('target'),
       choices: ['ArrowLeft', 'ArrowRight'],
       prompt: `
-        <p>Is this a dog?</p>
-        <p>If yes, press the right arrow key.</p>
-        <p>If no, press the left arrow key.</p>
+        <p>Is this a cat or a dog?</p>
+        <p>If cat, press the left arrow key.</p>
+        <p>If dog, press the right arrow key.</p>
       `,
       data: {
-        save_trial: true,
-        isDog: jsPsych.timelineVariable('isDog'),
+        task: 'test_response',
       },
     },
   ],
@@ -145,6 +143,15 @@ const block2Trials = {
 timeline.push(block2Instructions);
 timeline.push(preloadBlock2Images);
 timeline.push(block2Trials);
+
+const endTrial = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: '<p>Great job!</p><p>Press any key to exit.</p>',
+  choices: 'ALL_KEYS',
+  response_ends_trial: true,
+};
+
+timeline.push(endTrial);
 
 const exit_fullscreen = {
   type: jsPsychFullScreen,
