@@ -11,7 +11,12 @@ import './css/roar.css';
 // Local modules
 import { initConfig, initRoarJsPsych, initRoarTimeline } from './config';
 
-import { allTargets, preloadImages, block2Targets, preloadBlock2Images } from './loadAssets';
+import {
+  allTargets,
+  preloadImages,
+  block2Targets,
+  preloadBlock2Images,
+} from './loadAssets';
 
 // ---------Initialize the jsPsych object and the timeline---------
 const config = await initConfig();
