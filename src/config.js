@@ -104,6 +104,7 @@ export const initRoarJsPsych = (config) => {
 
   // Extend jsPsych's on_finish and on_data_update lifecycle functions to mark the
   // run as completed and write data to Firestore, respectively.
+  // Temporarily disabled for local practice/testing-only runs
   const extend = (fn, code) =>
     function () {
       // eslint-disable-next-line prefer-rest-params
@@ -209,6 +210,7 @@ export const initRoarTimeline = (config) => {
         taskInfo,
       });
 
+      // Disable firekit for testing without Firebase
       // await config.firekit.startRun();
     },
   };
