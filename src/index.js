@@ -108,33 +108,8 @@ const catDogTrials = {
         <p>If dog, press the left arrow key.</p>
       `,
       data: {
-        save_trial: true,
-      },
-    },
-  ],
-};
-
-timeline.push(catDogTrials);
-
-const block2Trials = {
-  timeline: [
-    {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<div style="font-size:60px;">+</div>',
-      choices: 'NO_KEYS',
-      trial_duration: 500,
-    },
-    {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: jsPsych.timelineVariable('target'),
-      choices: ['ArrowLeft', 'ArrowRight'],
-      prompt: `
-        <p>Is this a cat or a dog?</p>
-        <p>If cat, press the left arrow key.</p>
-        <p>If dog, press the right arrow key.</p>
-      `,
-      data: {
         task: 'test_response',
+        save_trial: true,
       },
     },
   ],
@@ -145,9 +120,7 @@ const block2Trials = {
   },
 };
 
-timeline.push(block2Instructions);
-timeline.push(preloadBlock2Images);
-timeline.push(block2Trials);
+timeline.push(catDogTrials);
 
 const endTrial = {
   type: jsPsychHtmlKeyboardResponse,
