@@ -2,6 +2,9 @@
 import jsPsychFullScreen from '@jspsych/plugin-fullscreen';
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
 
+// Import plugin for playing audio files
+import jsPsychAudioKeyboardResponse from '@jspsych/plugin-audio-keyboard-response';
+
 // Import necessary for async in the top level of the experiment script
 import 'regenerator-runtime/runtime';
 

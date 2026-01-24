@@ -1,12 +1,21 @@
 import jsPsychPreload from '@jspsych/plugin-preload';
 
-import cat1 from './assets/cats/1.jpg';
-import cat2 from './assets/cats/2.jpg';
-import cat3 from './assets/cats/3.jpg';
-import cat4 from './assets/cats/4.jpg';
-import cat5 from './assets/cats/5.jpg';
+import sound01 from './assets/sounds/01_piano_3-4_1.mp3';
+import sound02 from './assets/sounds/02_piano_4-4_1.mp3';
+import sound03 from './assets/sounds/03_drum_4-4_1.mp3';
+import sound04 from './assets/sounds/04_drum_3-4_1.mp3';
+import sound05 from './assets/sounds/05_clarinet_4-4_1.mp3';
+import sound06 from './assets/sounds/06_clarinet_3-4_1.mp3';
+import sound07 from './assets/sounds/07_piano_3-4_2.mp3';
+import sound08 from './assets/sounds/08_piano_4-4_2.mp3';
+import sound09 from './assets/sounds/09_clarinet_4-4_2.mp3';
+import sound10 from './assets/sounds/10_clarinet_3-4_2.mp3';
 
-const catImages = [cat1, cat2, cat3, cat4, cat5];
+// All audio files used in the experiment
+const allAudioFiles = [
+  sound01, sound02, sound03, sound04, sound05,
+  sound06, sound07, sound08, sound09, sound10,
+];
 
 // Create arrays of hot dog / not hot dog images
 const numFiles = 5;
