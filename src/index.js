@@ -14,11 +14,10 @@ import './css/roar.css';
 // Local modules
 import { initConfig, initRoarJsPsych, initRoarTimeline } from './config';
 
+// Import Audio Assets and Preload from loadAssets.js
 import {
-  allTargets,
-  preloadImages,
-  block2Targets,
-  preloadBlock2Images,
+  audioTargets,
+  preloadAudio,
 } from './loadAssets';
 
 // ---------Initialize the jsPsych object and the timeline---------
@@ -27,18 +26,26 @@ const jsPsych = initRoarJsPsych(config);
 const timeline = initRoarTimeline(config);
 
 // ---------Preload Media Here---------
-timeline.push(preloadImages);
+// Preload audio files for the experiment instead of images
+timeline.push(preloadAudio);
 
 // ---------Create trials---------
 /* define welcome message trial */
 const welcome = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: `
-    <h3>Directions</h3>
-    <p>
-      Press the right arrow key if the displayed image is a hot dog.
-      Press the left arrow key otherwise.
-    </p>
+    <h3>Rhythm Syntax Task</h3>
+    <p>Hello and welcome to the task!</p>
+    <p>In this task, you will hear short musical clips.</p>
+    
+    <div class="instruction-box">
+      <p>If you hear a <strong>3-beat rhythm (Waltz, "Rum-pa-pa")</strong>,:<br>
+      Press the <span class="key-text blue">[ ← Left Arrow ]</span> key.</p>
+
+      <p>If you hear a <strong>4-beat rhythm (March, "One-two-three-four")</strong>,:<br>
+      Press the <span class="key-text blue">[ → Right Arrow ]</span> key.</p>
+    </div>
+
     <p>Press any key to continue</p>
     `,
 };
