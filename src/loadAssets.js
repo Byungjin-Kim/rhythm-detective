@@ -17,49 +17,22 @@ const allAudioFiles = [
   sound06, sound07, sound08, sound09, sound10,
 ];
 
-// Create arrays of hot dog / not hot dog images
-const numFiles = 5;
-const hotDogFiles = Array.from(Array(numFiles), (_, i) => i + 1).map(
-  (idx) => `https://storage.googleapis.com/roar-hot-dog-images/hotdog/${idx}.jpg`,
-);
+// Define Targets for the audio clips
+export const audioTargets = [
+  { sound: sound01, correct_response: 'ArrowLeft', meter: '3/4', instrument: 'piano' },
+  { sound: sound02, correct_response: 'ArrowRight', meter: '4/4', instrument: 'piano' },
+  { sound: sound03, correct_response: 'ArrowRight', meter: '4/4', instrument: 'drum' },
+  { sound: sound04, correct_response: 'ArrowLeft', meter: '3/4', instrument: 'drum' },
+  { sound: sound05, correct_response: 'ArrowRight', meter: '4/4', instrument: 'clarinet' },
+  { sound: sound06, correct_response: 'ArrowLeft', meter: '3/4', instrument: 'clarinet' },
+  { sound: sound07, correct_response: 'ArrowLeft', meter: '3/4', instrument: 'piano' },
+  { sound: sound08, correct_response: 'ArrowRight', meter: '4/4', instrument: 'piano' },
+  { sound: sound09, correct_response: 'ArrowRight', meter: '4/4', instrument: 'clarinet' },
+  { sound: sound10, correct_response: 'ArrowLeft', meter: '3/4', instrument: 'clarinet' },
+];
 
-const notHotDogFiles = Array.from(Array(numFiles), (_, i) => i + 1).map(
-  (idx) => `https://storage.googleapis.com/roar-hot-dog-images/nothotdog/${idx}.jpg`,
-);
-
-// Dog images (for Block 2) - Using cloud URLs instead of local files
-const dogFiles = Array.from(Array(numFiles), (_, i) => i + 1).map(
-  (idx) => `https://storage.googleapis.com/roar-hot-dog-images/dog/${idx}.jpg`,
-);
-
-// Block 1: Hot Dog vs. Not Hot Dog
-const allFiles = hotDogFiles.concat(notHotDogFiles);
-export const allTargets = allFiles.map((url) => ({
-  target: `<img src="${url}" width=250 height=250>`,
-  isHotDog: !url.includes('nothotdog'),
-}));
-
-/* preload images */
-export const preloadImages = {
+// Preload audio files
+export const preloadAudio = {
   type: jsPsychPreload,
-  images: allFiles,
-};
-
-// Block 2: cat vs. dog
-
-const block2Files = catImages.concat(dogFiles);
-export const block2Targets = block2Files.map((url) => ({
-  target: `<img src="${url}" width=250 height=250>`,
-  isDog: url.includes('dog'),
-}));
-
-// Preload the cat/dog images
-export const preloadBlock2Images = {
-  type: jsPsychPreload,
-  images: block2Files,
-};
-
-export const preloadCatImages = {
-  type: jsPsychPreload,
-  images: catImages,
+  audio: allAudioFiles,
 };
