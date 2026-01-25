@@ -37,21 +37,22 @@ const welcome = {
     <h3>Rhythm Syntax Task</h3>
     <p>Hello and welcome to the task!</p>
     <p>In this task, you will hear short musical clips.</p>
-    
+
     <div class="instruction-box">
       <p>If you hear a <strong>3-beat rhythm (Waltz, "Rum-pa-pa")</strong>,:<br>
       Press the <span class="key-text blue">[ ← Left Arrow ]</span> key.</p>
 
       <p>If you hear a <strong>4-beat rhythm (March, "One-two-three-four")</strong>,:<br>
-      Press the <span class="key-text blue">[ → Right Arrow ]</span> key.</p>
+      Press the <span class="key-text red">[ → Right Arrow ]</span> key.</p>
     </div>
 
-    <p>Press any key to continue</p>
+    <p>Press any key to start</p>
     `,
 };
 timeline.push(welcome);
 
-const hotDogTrials = {
+// 2. Define the main rhythm experimental trials
+const rhythmTrials = {
   timeline: [
     {
       type: jsPsychHtmlKeyboardResponse,
@@ -59,79 +60,41 @@ const hotDogTrials = {
       choices: 'NO_KEYS',
       trial_duration: 500,
     },
-    {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: jsPsych.timelineVariable('target'),
+    { // Audio stimulus with keyboard response
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: jsPsych.timelineVariable('sound'),
       choices: ['ArrowLeft', 'ArrowRight'],
       prompt: `
-        <p>Is this a hot dog?</p>
-        <p>If yes, press the right arrow key.</p>
-        <p>If no, press the left arrow key.</p>
+        <div class="prompt-box">
+          <p>Which rhythm did you hear?</p>
+          <p>
+            <span class="key-text blue">[←] 3/4 (3-beat)</span>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+            <span class="key-text red">[→] 4/4 (4-beat)</span>
+          </p>
+        </div>
       `,
       data: {
         // Here is where we specify that we should save the trial to Firestore
+        task: 'rhythm_syntax',
         save_trial: true,
-        // Here we can also specify additional information that we would like stored
+        correct_response: jsPsych.timelineVariable('correct_response'),
+        music_type: jsPsych.timelineVariable('type'),
+        instrument: jsPsych.timelineVariable('instrument'),
         // in this trial in ROAR's Firestore database.
       },
     },
   ],
-  timeline_variables: allTargets,
+  timeline_variables: audioTargets,
   sample: {
     type: 'without-replacement',
     size: 10,
   },
 };
 
-timeline.push(hotDogTrials);
+timeline.push(rhythmTrials);
 
-const block2Instructions = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: `
-    <h3>Great job!</h3>
-    <p>
-      Now, press the right arrow key if the displayed image is of a dog.
-      Press the left arrow key if the displayed image is of a cat.
-    </p>
-    <p>Press any key to continue</p>
-  `,
-};
-
-timeline.push(preloadBlock2Images);
-timeline.push(block2Instructions);
-
-const catDogTrials = {
-  timeline: [
-    {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<div style="font-size:60px;">+</div>',
-      choices: 'NO_KEYS',
-      trial_duration: 500,
-    },
-    {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: jsPsych.timelineVariable('target'),
-      choices: ['ArrowLeft', 'ArrowRight'],
-      prompt: `
-        <p>Is this a cat or a dog?</p>
-        <p>If cat, press the right arrow key.</p>
-        <p>If dog, press the left arrow key.</p>
-      `,
-      data: {
-        task: 'test_response',
-        save_trial: true,
-      },
-    },
-  ],
-  timeline_variables: block2Targets,
-  sample: {
-    type: 'without-replacement',
-    size: 10,
-  },
-};
-
-timeline.push(catDogTrials);
-
+// 3. Define end of experiment trial
 const endTrial = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: '<p>Great job!</p><p>Press any key to exit.</p>',
