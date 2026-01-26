@@ -86,10 +86,8 @@ const rhythmTrials = {
     },
   ],
   timeline_variables: audioTargets,
-  sample: {
-    type: 'without-replacement',
-    size: 10,
-  },
+  // Note: The 'sample' property is omitted to present trials in sequential order (1-10).
+  // If randomization is needed later, add: sample: { type: 'without-replacement', size: 10 }
 };
 
 timeline.push(rhythmTrials);
