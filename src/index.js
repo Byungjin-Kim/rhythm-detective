@@ -79,7 +79,7 @@ const rhythmTrials = {
         task: 'rhythm_syntax',
         save_trial: true,
         correct_response: jsPsych.timelineVariable('correct_response'),
-        music_type: jsPsych.timelineVariable('type'),
+        music_type: jsPsych.timelineVariable('meter'),
         instrument: jsPsych.timelineVariable('instrument'),
         // in this trial in ROAR's Firestore database.
       },
