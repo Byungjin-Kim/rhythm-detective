@@ -30,19 +30,19 @@ const timeline = initRoarTimeline(config);
 timeline.push(preloadAudio);
 
 // ---------Create trials---------
-/* define welcome message trial */
+/* 1. define welcome message trial */
 const welcome = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: `
-    <h3>Rhythm Syntax Task</h3>
+    <h1>Rhythm Syntax Task</h1>
     <p>Hello and welcome to the task!</p>
     <p>In this task, you will hear short musical clips.</p>
 
     <div class="instruction-box">
-      <p>If you hear a <strong>3-beat rhythm (Waltz, "Rum-pa-pa")</strong>,:<br>
+      <p>If you hear a <strong>3-beat rhythm</strong> (Waltz, "Rum-pa-pa"),<br>
       Press the <span class="key-text blue">[ ← Left Arrow ]</span> key.</p>
 
-      <p>If you hear a <strong>4-beat rhythm (March, "One-two-three-four")</strong>,:<br>
+      <p>If you hear a <strong>4-beat rhythm</strong> (March, "One-two-three-four"),<br>
       Press the <span class="key-text red">[ → Right Arrow ]</span> key.</p>
     </div>
 
