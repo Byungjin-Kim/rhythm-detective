@@ -94,16 +94,24 @@ const rhythmTrials = {
 
 timeline.push(rhythmTrials);
 
-// 3. Define end of experiment trial
+// 3. End Screen
 const endTrial = {
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: '<p>Great job!</p><p>Press any key to exit.</p>',
+  stimulus: `
+    <div class="instruction-box" style="text-align: center;">
+    <h3>Great job!</h3>
+    <p>The task is complete.</p>
+    <br>
+    <p>Press any key to exit.</p>
+    </div>
+  `,
   choices: 'ALL_KEYS',
   response_ends_trial: true,
 };
 
 timeline.push(endTrial);
 
+// 4. Exit Fullscreen
 const exit_fullscreen = {
   type: jsPsychFullScreen,
   fullscreen_mode: false,
